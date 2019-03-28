@@ -11,6 +11,7 @@ import Logo from './components/logo/logo';
 import ImageLinkForm from './components/imageLinkForm/imageLinkForm';
 import Rank from './components/rank/rank';
 import FaceRecognition from './components/faceRecognition/faceRecognition';
+import SignIn from './components/signIn/signIn';
 
 const app = new Clarifai.App( {
   apiKey: '52d56e21bc684677955e8b09444dd647'
@@ -19,7 +20,7 @@ const app = new Clarifai.App( {
 const particlesOptions = {
   particles: {
     number: {
-      value: 300,
+      value: 200,
       denisty: {
         enable: true,
         value_area: 400
@@ -36,6 +37,7 @@ class App extends Component {
       input: '',
       imageUrl: '',
       box: {},
+      route: 'signIn'
     }
   }
 
@@ -81,14 +83,18 @@ class App extends Component {
               params={particlesOptions}
         />
         <Navigation />
-        <Logo />
-        <Rank />
-        <ImageLinkForm 
-          onInputChange={this.onInputChange} 
-          onSubmit={this.onSubmit}
-        />
-        <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} />
-
+        { this.state.route === 'signIn' 
+          ? <SignIn />
+          : <div>
+            <Logo />
+            <Rank />
+            <ImageLinkForm 
+              onInputChange={this.onInputChange} 
+              onSubmit={this.onSubmit}
+            />
+            <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} />
+          </div>
+        }
       </div>
     );
   }
