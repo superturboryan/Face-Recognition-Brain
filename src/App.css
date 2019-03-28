@@ -17,3 +17,9 @@
   display: flex;
   justify-content: center;
 }
+
+.centerBox {
+
+	transform: translate(50%);
+
+}

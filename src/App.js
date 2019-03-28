@@ -12,6 +12,7 @@ import ImageLinkForm from './components/imageLinkForm/imageLinkForm';
 import Rank from './components/rank/rank';
 import FaceRecognition from './components/faceRecognition/faceRecognition';
 import SignIn from './components/signIn/signIn';
+import Register from './components/register/register';
 
 const app = new Clarifai.App( {
   apiKey: '52d56e21bc684677955e8b09444dd647'
@@ -81,30 +82,36 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-
+      <div className="App ">
         <Particles className='particles' 
               params={particlesOptions}
         />
-        <Navigation onRouteChange={this.onRouteChange} />
-        { this.state.route === 'signIn' 
-          ? <SignIn onRouteChange={this.onRouteChange}/>
-          : <div>
-            <Logo />
-            <Rank />
-            <ImageLinkForm 
-              onInputChange={this.onInputChange} 
-              onSubmit={this.onSubmit}
-            />
-            <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} />
-          </div>
+        {/*Start using jsx code to check if the state.route === signIn*/}
+        { this.state.route === 'home' 
+          ? <div>
+              <Navigation onRouteChange={this.onRouteChange} />
+              <Logo />
+              <Rank />
+              <ImageLinkForm 
+                onInputChange={this.onInputChange} 
+                onSubmit={this.onSubmit}
+              />
+              <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl} />
+            </div> 
+          : (
+            this.state.route === 'signIn'
+            ? <SignIn onRouteChange={this.onRouteChange}/>
+            : <Register onRouteChange={this.onRouteChange}/>
+            )
         }
-      </div>
+        </div>
     );
   }
 }
 
 export default App;
 
-/*updated URL: "https://samples.clarifai.com/metro-north.jpg"  
-API name: Clarifai.FACE_DETECT_MODEL*/
+
+
+
+
