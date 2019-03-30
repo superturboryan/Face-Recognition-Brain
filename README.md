@@ -2,8 +2,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 The following NPM packages were used:
 
+
 clarifai
+\
 react-particles-js
+\
 react-scripts
+\
 react-tilt
+\
 tachyons
+
+
